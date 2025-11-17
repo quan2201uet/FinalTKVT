@@ -1,4 +1,0 @@
-#include <LoraComunicationTask.h>
-
-
-
