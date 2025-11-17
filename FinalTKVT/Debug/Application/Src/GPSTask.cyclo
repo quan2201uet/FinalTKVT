@@ -1,0 +1,7 @@
+../Application/Src/GPSTask.cpp:3:1:GPSDataAnalysisTask::GPSDataAnalysisTask(QueueHandle_t, QueueHandle_t)	1
+../Application/Src/GPSTask.cpp:7:6:void GPSDataAnalysisTask::initTask()	1
+../Application/Src/GPSTask.cpp:12:6:static void GPSDataAnalysisTask::startTask(void*)	1
+../Application/Src/GPSTask.cpp:18:6:void GPSDataAnalysisTask::sendData()	1
+../Application/Src/GPSTask.cpp:36:6:void GPSDataAnalysisTask::readData()	4
+../Application/Src/GPSTask.cpp:56:6:void GPSDataAnalysisTask::parseGNRMC(char*, GPS_data_t*)	11
+../Application/Src/GPSTask.cpp:118:7:float GPSDataAnalysisTask::convertToDecimal(char*)	1

@@ -1,0 +1,7 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Locadcell Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:TCS34725 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:receiverUart Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:testGPS Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:testIR Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:testLCD Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:testtcs3472 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:transmitUart Debug
+eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Locadcell\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Locadcell\ Debug/activeLaunchTarget=null\:---
