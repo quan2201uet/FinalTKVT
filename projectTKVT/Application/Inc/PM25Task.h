@@ -10,11 +10,11 @@ private:
 	QueueHandle_t _QueuePM25ToLora;
 	float pm;
 public:
-	readPM25Task(QueueHandle_t QueuePM25ToMicroSD, QueueHandle_t QueuePM25ToLora);
-	void initTask(void);
-	static void startTask(void* pvParameters);
+	readPM25Task();
+	void init(void);
+	void startTask();
 	void readData(void);
-	void sendData(void);
+	void processTask(void);
 };
 
 

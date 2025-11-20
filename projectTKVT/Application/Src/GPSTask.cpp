@@ -1,37 +1,33 @@
 #include "GPSTask.h"
 
-GPSDataAnalysisTask :: GPSDataAnalysisTask
-	(QueueHandle_t QueueGPSToMicroSD, QueueHandle_t QueueGPSToLora)
-	: _QueueGPSToMicroSD(QueueGPSToMicroSD), _QueueGPSToLora(QueueGPSToLora){}
+GPSDataAnalysisTask :: GPSDataAnalysisTask(){}
 
-void GPSDataAnalysisTask::initTask(void)
+void GPSDataAnalysisTask::init(void)
 {
-	xTaskCreate(GPSDataAnalysisTask::startTask, "Task_GPS", 128, this, 1, NULL);
+
 }
 
-void GPSDataAnalysisTask::startTask(void* pvParameters)
-{
-	GPSDataAnalysisTask *self = static_cast<GPSDataAnalysisTask*>(pvParameters);
-	self->GPSDataAnalysisTask::sendData();
-}
-
-void GPSDataAnalysisTask::sendData(void)
+void GPSDataAnalysisTask::startTask()
 {
 	for(;;)
 	{
-		xSemaphoreTake(semaGPSTask, portMAX_DELAY);
-		readData();
-		if (xQueueSend(_QueueGPSToLora, &_GPS_data, 100) == pdPASS)
-		{
-
-		}
-		if (xQueueSend(_QueueGPSToMicroSD, &_GPS_data, 100) == pdPASS)
-		{
-
-		}
-		vTaskDelay(500);
+		processTask();
 	}
+}
 
+void GPSDataAnalysisTask::processTask(void)
+{
+
+	xSemaphoreTake(semaGPSTask, portMAX_DELAY);
+	readData();
+	if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
+	{
+
+	}
+	if (xQueueSend(QueueGPSToMicroSD, &_GPS_data, 100) == pdPASS)
+	{
+
+	}
 
 }
 void GPSDataAnalysisTask::readData(void)

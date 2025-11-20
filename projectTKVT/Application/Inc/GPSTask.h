@@ -18,8 +18,6 @@ extern UART_HandleTypeDef huart2;
 class GPSDataAnalysisTask
 {
 private:
-	QueueHandle_t _QueueGPSToMicroSD;
-	QueueHandle_t _QueueGPSToLora;
 	GPS_data_t _GPS_data;
 
 	uint8_t RxChar;
@@ -27,11 +25,11 @@ private:
 	uint16_t idx = 0;
 
 public:
-	GPSDataAnalysisTask (QueueHandle_t QueueGPSToMicroSD, QueueHandle_t QueueGPSToLora);
+	GPSDataAnalysisTask ();
 
-	void initTask(void);
+	void init(void);
 
-	static void startTask (void* pvParameters);
+	void startTask ();
 
 	float convertToDecimal(char *nmeaCoord);
 
@@ -39,7 +37,7 @@ public:
 
 	void readData(void);
 
-	void sendData(void);
+	void processTask(void);
 
 };
 

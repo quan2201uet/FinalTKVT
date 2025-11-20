@@ -7,15 +7,14 @@ extern I2C_HandleTypeDef hi2c1;
 class readBME280Task
 {
 private:
-	QueueHandle_t _QueueBMEToMicroSD;
-	QueueHandle_t _QueueBMEToLora;
 	BME_data_t _BME_data;
 public:
-	readBME280Task(QueueHandle_t QueueBMEToMicroSD, QueueHandle_t QueueBMEToLora);
-	void initTask(void);
-	static void startTask(void* pvParameters);
+	readBME280Task();
+	void init(void);
+	void startTask();
+
 	void readData(void);
-	void sendData(void);
+	void processTask(void);
 };
 
 

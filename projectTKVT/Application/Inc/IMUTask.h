@@ -13,12 +13,12 @@ private:
 	QueueHandle_t _QueueIMUToLora;
 	IMU_data_t _IMU_data;
 public:
-	readRawDataIMUTask(QueueHandle_t QueueIMUToMicroSD, QueueHandle_t QueueIMUToLora);
+	readRawDataIMUTask();
 
-	void initTask(void);
-	static void startTask(void* pvParameters);
+	void init(void);
+	void startTask();
 	void readData(void);
-	void senData(void);
+	void processTask(void);
 };
 
 

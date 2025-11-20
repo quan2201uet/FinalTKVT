@@ -1,44 +1,43 @@
 #include "IMUTask.h"
 
-readRawDataIMUTask::readRawDataIMUTask
-	(QueueHandle_t QueueIMUToMicroSD, QueueHandle_t QueueIMUToLora)
-	:_QueueIMUToMicroSD(QueueIMUToMicroSD), _QueueIMUToLora(QueueBMEToLora){}
+readRawDataIMUTask::readRawDataIMUTask(){}
 
 
-void readRawDataIMUTask :: initTask(void)
+void readRawDataIMUTask :: init(void)
 {
-	xTaskCreate(readRawDataIMUTask::startTask, "task_imu", 128, this, 1, NULL);
+
 }
 
-void readRawDataIMUTask::startTask (void* pvParameters)
+void readRawDataIMUTask::startTask ()
 {
-	readRawDataIMUTask *self = static_cast<readRawDataIMUTask*> (pvParameters);
-	self->readRawDataIMUTask :: senData();
-}
-
-
-void readRawDataIMUTask::senData(void)
-{
-	for (;;)
+	for(;;)
 	{
-		xSemaphoreTake(semaIMUTask, portMAX_DELAY);
-
-		readData();
-		if(xQueueSend(QueueIMUToLora, &_IMU_data, 100) == pdPASS)
-		{
-
-		}
-
-		if(xQueueSend(QueueIMUToMicroSD, &_IMU_data, 100) == pdPASS)
-		{
-
-		}
+		processTask();
 	}
+}
+
+
+void readRawDataIMUTask::processTask(void)
+{
+
+	xSemaphoreTake(semaIMUTask, portMAX_DELAY);
+
+	readData();
+	if(xQueueSend(QueueIMUToLora, &_IMU_data, 100) == pdPASS)
+	{
+
+	}
+
+	if(xQueueSend(QueueIMUToMicroSD, &_IMU_data, 100) == pdPASS)
+	{
+
+	}
+
 }
 
 void readRawDataIMUTask::readData(void)
 {
-
+#pragma message ("chua viet ham doc IMU")
 }
 
 

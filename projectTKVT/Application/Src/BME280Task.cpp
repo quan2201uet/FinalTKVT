@@ -1,42 +1,45 @@
 #include "BME280Task.h"
 
 
-readBME280Task::readBME280Task
-	(QueueHandle_t QueueBMEToMicroSD, QueueHandle_t QueueBMEToLora)
-	: _QueueBMEToMicroSD(QueueBMEToMicroSD), _QueueBMEToLora(QueueBMEToLora){}
+readBME280Task::readBME280Task(){}
 
+void readBME280Task::init(void)
+{
 
-void readBME280Task::sendData(void)
+}
+
+void readBME280Task::startTask()
 {
 	for(;;)
 	{
-		xSemaphoreTake(semaBME280Task, portMAX_DELAY);
-		readData();
-		if (xQueueSend(_QueueBMEToLora, &_BME_data, 100) == pdPASS)
-		{
-
-		}
-
-		if(xQueueSend(_QueueBMEToMicroSD, &_BME_data, 100) == pdPASS)
-		{
-
-		}
+		processTask();
 	}
+}
+
+
+void readBME280Task::processTask(void)
+{
+
+	xSemaphoreTake(semaBME280Task, portMAX_DELAY);
+	readData();
+	if (xQueueSend(QueueBMEToLora, &_BME_data, 100) == pdPASS)
+	{
+
+	}
+
+	if(xQueueSend(QueueBMEToMicroSD, &_BME_data, 100) == pdPASS)
+	{
+
+	}
+
 }
 
 void readBME280Task::readData(void)
 {
-	_BME_data.humi = 3.0;
+#pragma message ("chưa viết hàm đọc BME")
 }
 
-void readBME280Task::initTask(void)
-{
-	xTaskCreate(readBME280Task::startTask, "Task_GPS", 128, this, 1, NULL);
-}
 
-void readBME280Task::startTask(void* pvParameters)
-{
-	readBME280Task *self = static_cast<readBME280Task*> (pvParameters);
-	self->readBME280Task::sendData();
-}
+
+
 

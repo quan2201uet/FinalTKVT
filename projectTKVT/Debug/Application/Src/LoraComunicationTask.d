@@ -44,7 +44,18 @@ Application/Src/LoraComunicationTask.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/mavlink.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/version.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/sensor.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../protocol.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_types.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_helpers.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../checksum.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_conversions.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/LoraComunicationTask.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
 ../Core/Inc/main.h:
@@ -91,3 +102,14 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/mavlink.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/version.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/sensor.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../protocol.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_types.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_helpers.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../checksum.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_conversions.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h:

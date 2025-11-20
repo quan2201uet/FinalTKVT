@@ -1,5 +1,5 @@
-../Application/Src/PM25Task.cpp:3:1:readPM25Task::readPM25Task(QueueHandle_t, QueueHandle_t)	1
-../Application/Src/PM25Task.cpp:7:6:void readPM25Task::initTask()	1
-../Application/Src/PM25Task.cpp:12:6:static void readPM25Task::startTask(void*)	1
-../Application/Src/PM25Task.cpp:18:6:void readPM25Task::readData()	1
-../Application/Src/PM25Task.cpp:23:6:void readPM25Task::sendData()	1
+../Application/Src/PM25Task.cpp:3:1:readPM25Task::readPM25Task()	1
+../Application/Src/PM25Task.cpp:5:6:void readPM25Task::init()	1
+../Application/Src/PM25Task.cpp:10:6:void readPM25Task::startTask()	1
+../Application/Src/PM25Task.cpp:18:6:void readPM25Task::processTask()	1
+../Application/Src/PM25Task.cpp:33:6:void readPM25Task::readData()	1

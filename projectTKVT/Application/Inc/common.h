@@ -64,7 +64,6 @@ typedef struct{
 	float speed;
 	float course;
 	float distance;
-	float temp;
 
 	float gpsTime;
 	float gpsLatitude;
@@ -78,6 +77,7 @@ typedef struct{
 	float gyroZ;
 
 	float press;
+	float temp;
 	float humi;
 	float co;
 	float pm;
@@ -123,7 +123,7 @@ typedef struct GPRMC{
 
 /* USER CODE BEGIN Function */
 
-void softwareTimer(void);
+void initTask(void);
 
 
 /* USER CODE END Struct */
