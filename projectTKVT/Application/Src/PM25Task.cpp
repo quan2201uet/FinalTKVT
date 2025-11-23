@@ -12,12 +12,12 @@ void readPM25Task::startTask()
 	for(;;)
 	{
 		processTask();
+		vTaskDelay(1000);
 	}
 }
 
 void readPM25Task::processTask(void)
 {
-	xSemaphoreTake(semaPM25Task, portMAX_DELAY);
 
 	if (xQueueSend(QueuePM25ToMicroSD, &pm, 100) == pdPASS)
 	{

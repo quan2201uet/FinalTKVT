@@ -26,7 +26,6 @@ public:
 
 	void giveData(void); // lấy dữ liệu từ các task khác
 
-
 private:
 	mavlink_message_t msg;
 	uint16_t len_encoded;
@@ -37,6 +36,7 @@ private:
 	BME_data_t _BME_data;
 	IMU_data_t _IMU_data;
 	float pm;
+	int counter;
 
 };
 

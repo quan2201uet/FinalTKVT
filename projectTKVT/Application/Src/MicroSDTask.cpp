@@ -2,7 +2,7 @@
 
 void logDataTask::init()
 {
-
+	counter = 0;
 }
 
 void logDataTask::startTask()
@@ -16,10 +16,11 @@ void logDataTask::startTask()
 void logDataTask::processTask()
 {
 	giveData();
-	if(xSemaphoreTake(semaMicroSDTask, 10) == pdPASS)
+	if(counter == 1000)
 	{
 		// log data
 #pragma message ("chưa viết hàm log data")
+		counter = 0;
 	}
 
 }
