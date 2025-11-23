@@ -12,6 +12,7 @@ void GPSDataAnalysisTask::startTask()
 	for(;;)
 	{
 		processTask();
+		vTaskDelay(1000);
 
 	}
 }
@@ -19,7 +20,6 @@ void GPSDataAnalysisTask::startTask()
 void GPSDataAnalysisTask::processTask(void)
 {
 
-	xSemaphoreTake(semaGPSTask, portMAX_DELAY);
 	readData();
 	if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
 	{

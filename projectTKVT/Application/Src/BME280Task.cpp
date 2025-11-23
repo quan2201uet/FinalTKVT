@@ -13,6 +13,7 @@ void readBME280Task::startTask()
 	for(;;)
 	{
 		processTask();
+		vTaskDelay(200);
 	}
 }
 
@@ -20,7 +21,6 @@ void readBME280Task::startTask()
 void readBME280Task::processTask(void)
 {
 
-	xSemaphoreTake(semaBME280Task, portMAX_DELAY);
 	readData();
 	if (xQueueSend(QueueBMEToLora, &_BME_data, 100) == pdPASS)
 	{

@@ -1,6 +1,6 @@
 #include <LoraComunicationTask.h>
 
-LoraComunicationTask::LoraComunicationTask(){}
+LoraComunicationTask::LoraComunicationTask(){counter = 0;}
 
 void LoraComunicationTask::init(void)
 {
@@ -21,19 +21,21 @@ void LoraComunicationTask::processTask()
 
 	giveData(); // lấy dữ liệu từ các task khác
 
-	if(xSemaphoreTake(semaLoraComunicationTask, 10) == pdPASS) // gửi bản tin với tần số 1HZ
+	if(counter == 1000) // gửi bản tin với tần số 1HZ
 	{
 		len_encoded = mavlink_msg_sensor_data_encode(SYSTEM_ID, COMPONENT_ID, &msg, &_Lora_data);
 		len_encoded = mavlink_msg_to_send_buffer(tx_mavlink_buffer, &msg);
 		if (len_encoded > 0) {
 			HAL_UART_Transmit(&huart1, tx_mavlink_buffer, len_encoded, 100);
 		}
+		counter = 0;
 	}
 }
 
 
 void LoraComunicationTask::giveData(void)
 {
+	counter++;
 	if(xQueueReceive(QueueBMEToLora, &_BME_data, 10) == pdPASS)
 	{
 		_Lora_data.temperature  = _BME_data.temp;

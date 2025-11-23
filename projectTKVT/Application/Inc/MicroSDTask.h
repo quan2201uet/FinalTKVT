@@ -26,6 +26,7 @@ private:
 	BME_data_t _BME_data;
 	IMU_data_t _IMU_data;
 	float pm;
+	int counter;
 };
 
 
