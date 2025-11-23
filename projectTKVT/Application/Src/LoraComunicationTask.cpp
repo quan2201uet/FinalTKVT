@@ -18,7 +18,6 @@ void LoraComunicationTask::startTask()
 
 void LoraComunicationTask::processTask()
 {
-	xSemaphoreTake(semaLoraComunicationTask, 10); // nhận semaphore để chạy
 
 	giveData(); // lấy dữ liệu từ các task khác
 

@@ -19,4 +19,4 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_s
 ../Application/Src/LoraComunicationTask.cpp:5:6:void LoraComunicationTask::init()	16	static
 ../Application/Src/LoraComunicationTask.cpp:11:6:void LoraComunicationTask::startTask()	16	static
 ../Application/Src/LoraComunicationTask.cpp:19:6:void LoraComunicationTask::processTask()	16	static
-../Application/Src/LoraComunicationTask.cpp:36:6:void LoraComunicationTask::giveData()	16	static
+../Application/Src/LoraComunicationTask.cpp:35:6:void LoraComunicationTask::giveData()	16	static

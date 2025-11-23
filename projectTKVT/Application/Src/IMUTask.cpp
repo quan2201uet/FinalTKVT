@@ -21,7 +21,7 @@ void readRawDataIMUTask::processTask(void)
 {
 
 	xSemaphoreTake(semaIMUTask, portMAX_DELAY);
-
+	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	readData();
 	if(xQueueSend(QueueIMUToLora, &_IMU_data, 100) == pdPASS)
 	{

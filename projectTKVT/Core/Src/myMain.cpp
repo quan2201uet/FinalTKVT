@@ -1,5 +1,6 @@
 #include "myMain.h"
 
+
 #include "IMUTask.h"
 #include "BME280Task.h"
 #include "GPSTask.h"
@@ -50,6 +51,18 @@ void startPM25Task(void*parameter);
 void startMICRTask(void*parameter);
 void startLoraTask(void*parameter);
 /*DEFINE FUNCTION END CODE */
+
+void startAllTask()
+{
+	initTask();
+
+	IMUTask =  new readRawDataIMUTask();
+	BMETask = new readBME280Task();
+	GPSTask = new GPSDataAnalysisTask();
+	LoraTask = new LoraComunicationTask();
+	//MicroSDTask = new logDataTask();
+	PM25Task = new readPM25Task();
+}
 
 
 // counter
@@ -102,39 +115,29 @@ void controlSemaphore()
 }
 
 
-void startAllTask()
-{
-	xTaskCreate(startIMUTask, "IMU-Task", 128, NULL, 1, NULL);
-	xTaskCreate(startBMETask, "BME-Task", 128, NULL, 1, NULL);
-	xTaskCreate(startGPSTask, "GPS-Task", 128, NULL, 1, NULL);
-	xTaskCreate(startPM25Task, "PM25-Task", 128, NULL, 1, NULL);
-	xTaskCreate(startMICRTask, "Micro-Task", 128, NULL, 1, NULL);
-	xTaskCreate(startLoraTask, "Lora-Task", 128, NULL, 1, NULL);
-}
-
 
 /* FUNCTION START TASK CODE BEGIN */
-void startIMUTask(void*parameter)
+void startIMUTask()
 {
 	IMUTask->startTask();
 }
-void startBMETask(void*parameter)
+void startBMETask()
 {
 	BMETask->startTask();
 }
-void startGPSTask(void*parameter)
+void startGPSTask()
 {
 	GPSTask->startTask();
 }
-void startLoraTask(void*parameter)
+void startLoraTask()
 {
 	LoraTask->startTask();
 }
-void startPM25Task(void*parameter)
+void startPM25Task()
 {
 	PM25Task->startTask();
 }
-void startMICRTask(void*parameter)
+void startMICRTask()
 {
 	MicroSDTask->startTask();
 }

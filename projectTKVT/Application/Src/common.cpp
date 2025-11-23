@@ -33,16 +33,7 @@ QueueHandle_t QueuePM25ToLora;
 /* USING FUNCTION BEGIN*/
 void initTask()
 {
-	// init sema
-	semaBME280Task = xSemaphoreCreateBinary();
-	semaGPSTask = xSemaphoreCreateBinary();
-	semaIMUTask = xSemaphoreCreateBinary();
-	semaLoraComunicationTask = xSemaphoreCreateBinary();
-	semaMicroSDTask = xSemaphoreCreateBinary();
-	semaPM25Task = xSemaphoreCreateBinary();
 
-
-	// init Queue
 	QueueBMEToLora = xQueueCreate(10, sizeof(BME_data_t));
 	QueueBMEToMicroSD = xQueueCreate(10, sizeof(BME_data_t));
 
@@ -54,6 +45,15 @@ void initTask()
 
 	QueuePM25ToLora = xQueueCreate(10, sizeof(float));
 	QueuePM25ToMicroSD = xQueueCreate(10, sizeof(float));
+
+
+	semaBME280Task = xSemaphoreCreateBinary();
+	semaGPSTask = xSemaphoreCreateBinary();
+	semaIMUTask = xSemaphoreCreateBinary();
+	semaLoraComunicationTask = xSemaphoreCreateBinary();
+	semaMicroSDTask = xSemaphoreCreateBinary();
+	semaPM25Task = xSemaphoreCreateBinary();
+
 }
 
 

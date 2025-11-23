@@ -12,6 +12,14 @@
 extern "C" {
 #endif
 
+
+void startIMUTask();
+void startBMETask();
+void startGPSTask();
+void startPM25Task();
+void startMICRTask();
+void startLoraTask();
+
 void startAllTask();
 void controlSemaphore();
 

@@ -12,7 +12,6 @@
 #define MAVLINK_MAX_TX_BUFFER_LEN 300
 /* END INCLUE DEFINE */
 
-
 class LoraComunicationTask
 {
 
