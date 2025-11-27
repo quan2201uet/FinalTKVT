@@ -10,28 +10,31 @@ void readBME280Task::init(void)
 
 void readBME280Task::startTask()
 {
+	QueueSetMemberHandle_t activeMember;
 	for(;;)
 	{
-		processTask();
+		activeMember = xQueueSelectFromSet(BME280TaskQueueSet, 10);
+		processTask(activeMember);
 	}
 }
 
 
-void readBME280Task::processTask(void)
+void readBME280Task::processTask(QueueSetMemberHandle_t activeMember)
 {
-
-	xSemaphoreTake(semaBME280Task, portMAX_DELAY);
-	readData();
-	if (xQueueSend(QueueBMEToLora, &_BME_data, 100) == pdPASS)
+	if(activeMember == semaBME280Task)
 	{
+		xSemaphoreTake(semaBME280Task, portMAX_DELAY);
+		readData();
+		if (xQueueSend(QueueBMEToLora, &_BME_data, 10) == pdPASS)
+		{
 
+		}
+
+		if(xQueueSend(QueueBMEToMicroSD, &_BME_data, 10) == pdPASS)
+		{
+
+		}
 	}
-
-	if(xQueueSend(QueueBMEToMicroSD, &_BME_data, 100) == pdPASS)
-	{
-
-	}
-
 }
 
 void readBME280Task::readData(void)

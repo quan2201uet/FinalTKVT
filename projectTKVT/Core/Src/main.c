@@ -127,25 +127,22 @@ int main(void)
 	/* definition and creation of defaultTask */
 
 	/* USER CODE BEGIN RTOS_THREADS */
-	if(xTaskCreate(startIMUTask, "IMU-Task", 128, NULL, 1, NULL) == pdPASS)
+	if(xTaskCreate(startIMUTask, "IMU-Task", 256, NULL, 1, NULL) == pdPASS)
 	{
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	}
 
-	if ( xTaskCreate(startBMETask, "BME-Task", 128, NULL, 1, NULL) == pdPASS)
+	if ( xTaskCreate(startBMETask, "BME-Task", 256, NULL, 1, NULL) == pdPASS)
 	{
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	}
 
-	if(xTaskCreate(startGPSTask, "GPS-Task", 128, NULL, 1, NULL) == pdPASS)
+	if(xTaskCreate(startGPSTask, "GPS-Task", 256, NULL, 1, NULL) == pdPASS)
 	{
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	}
-	else {
-		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-	}
 
-	if(xTaskCreate(startPM25Task, "PM25-Task", 128, NULL, 1, NULL) == pdPASS)
+	if(xTaskCreate(startPM25Task, "PM25-Task", 256, NULL, 1, NULL) == pdPASS)
 	{
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	}
@@ -154,7 +151,10 @@ int main(void)
 	{
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	}
-	//xTaskCreate(startMICRTask, "Micro-Task", 512S, NULL, 1, NULL);
+	if(xTaskCreate(startMICROTask, "Micro-Task", 128, NULL, 1, NULL) == pdPASS)
+	{
+		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	}
 	/* USER CODE END RTOS_THREADS */
 
 	/* Start scheduler */
@@ -264,7 +264,7 @@ static void MX_TIM3_Init(void)
 	htim3.Instance = TIM3;
 	htim3.Init.Prescaler = 7;
 	htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim3.Init.Period = 1;
+	htim3.Init.Period = 999;
 	htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
 	if (HAL_TIM_Base_Init(&htim3) != HAL_OK)

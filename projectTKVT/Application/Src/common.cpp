@@ -7,6 +7,15 @@ constexpr uint16_t BME_TASK_TIMER_COUNTER_MAX = 200;
 constexpr uint16_t LORA_TASK_TIMER_COUNTER_MAX = 1000;
 constexpr uint16_t PM25_TASK_TIMER_COUNTER_MAX = 1000;
 
+/* USING QUEUESET BEGIN*/
+QueueSetHandle_t BME280TaskQueueSet;
+QueueSetHandle_t GPSTaskQueueSet;
+QueueSetHandle_t IMUTaskQueueSet;
+QueueSetHandle_t LoraTaskQueueSet;
+QueueSetHandle_t MicroSDTaskQueueSet;
+QueueSetHandle_t PM25TaskQueueSet;
+/* USING QUEUESET END*/
+
 /* USING SEMAPHORE BEGIN*/
 SemaphoreHandle_t semaBME280Task;
 SemaphoreHandle_t semaGPSTask;
@@ -54,6 +63,48 @@ void initTask()
 	semaMicroSDTask = xSemaphoreCreateBinary();
 	semaPM25Task = xSemaphoreCreateBinary();
 
+	/* CREATE QUEUE SET BEGIN*/
+	BME280TaskQueueSet = xQueueCreateSet(1);
+	GPSTaskQueueSet = xQueueCreateSet(1);
+	IMUTaskQueueSet = xQueueCreateSet(1);
+	LoraTaskQueueSet = xQueueCreateSet(41);
+	MicroSDTaskQueueSet= xQueueCreateSet(41);
+	PM25TaskQueueSet = xQueueCreateSet(1);
+	/* CREATE QUEUE SET AND*/
+
+
+	/* ADD SEMAPHORE AND QUEUE INTO BME280 QUEUE SET BEGIN */
+	xQueueAddToSet(semaBME280Task, BME280TaskQueueSet);
+	/* ADD SEMAPHORE AND QUEUE INTO BME280 QUEUE SET END */
+
+	/* ADD SEMAPHORE AND QUEUE INTO GPS QUEUE SET BEGIN */
+	xQueueAddToSet(semaGPSTask, GPSTaskQueueSet);
+	/* ADD SEMAPHORE AND QUEUE INTO GPS QUEUE SET END */
+
+	/* ADD SEMAPHORE AND QUEUE INTO IMU QUEUE SET BEGIN */
+	xQueueAddToSet(semaIMUTask, IMUTaskQueueSet);
+	/* ADD SEMAPHORE AND QUEUE INTO IMU QUEUE SET END */
+
+
+	/* ADD SEMAPHORE AND QUEUE INTO LORA QUEUE SET BEGIN */
+	xQueueAddToSet(semaLoraComunicationTask, LoraTaskQueueSet);
+	xQueueAddToSet(QueueBMEToLora, LoraTaskQueueSet);
+	xQueueAddToSet(QueueGPSToLora, LoraTaskQueueSet);
+	xQueueAddToSet(QueueIMUToLora, LoraTaskQueueSet);
+	xQueueAddToSet(QueuePM25ToLora, LoraTaskQueueSet);
+	/* ADD SEMAPHORE AND QUEUE INTO LORA QUEUE SET END */
+
+	/* ADD SEMAPHORE AND QUEUE INTO MICROSD QUEUE SET BEGIN */
+	xQueueAddToSet(semaMicroSDTask, MicroSDTaskQueueSet);
+	xQueueAddToSet(QueueBMEToMicroSD, MicroSDTaskQueueSet);
+	xQueueAddToSet(QueueGPSToMicroSD, MicroSDTaskQueueSet);
+	xQueueAddToSet(QueueIMUToMicroSD, MicroSDTaskQueueSet);
+	xQueueAddToSet(QueuePM25ToMicroSD, MicroSDTaskQueueSet);
+	/* ADD SEMAPHORE AND QUEUE INTO MICROSD QUEUE SET END */
+
+	/* ADD SEMAPHORE AND QUEUE INTO PM25 QUEUE SET BEGIN */
+	xQueueAddToSet(semaPM25Task, PM25TaskQueueSet);
+	/* ADD SEMAPHORE AND QUEUE INTO PM25 QUEUE SET END */
 }
 
 

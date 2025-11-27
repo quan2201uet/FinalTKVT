@@ -9,24 +9,28 @@ void readPM25Task::init (void)
 
 void readPM25Task::startTask()
 {
+	QueueSetMemberHandle_t activeMember;
 	for(;;)
 	{
-		processTask();
+		activeMember = xQueueSelectFromSet(PM25TaskQueueSet, 10);
+		processTask(activeMember);
 	}
 }
 
-void readPM25Task::processTask(void)
+void readPM25Task::processTask(QueueSetMemberHandle_t activeMember)
 {
-	xSemaphoreTake(semaPM25Task, portMAX_DELAY);
-
-	if (xQueueSend(QueuePM25ToMicroSD, &pm, 100) == pdPASS)
+	if (activeMember == semaPM25Task)
 	{
+		xSemaphoreTake(semaPM25Task, 10);
+		if (xQueueSend(QueuePM25ToMicroSD, &pm, 10) == pdPASS)
+		{
 
-	}
+		}
 
-	if (xQueueSend(QueuePM25ToLora, &pm, 100) == pdPASS)
-	{
+		if (xQueueSend(QueuePM25ToLora, &pm, 10) == pdPASS)
+		{
 
+		}
 	}
 }
 

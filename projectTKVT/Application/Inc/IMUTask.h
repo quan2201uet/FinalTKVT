@@ -9,8 +9,6 @@ extern I2C_HandleTypeDef hi2c2;
 class readRawDataIMUTask
 {
 private:
-	QueueHandle_t _QueueIMUToMicroSD;
-	QueueHandle_t _QueueIMUToLora;
 	IMU_data_t _IMU_data;
 public:
 	readRawDataIMUTask();
@@ -18,7 +16,7 @@ public:
 	void init(void);
 	void startTask();
 	void readData(void);
-	void processTask(void);
+	void processTask(QueueSetMemberHandle_t activeMember);
 };
 
 

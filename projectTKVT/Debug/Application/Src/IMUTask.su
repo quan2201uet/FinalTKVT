@@ -1,5 +1,5 @@
 ../Application/Src/IMUTask.cpp:3:1:readRawDataIMUTask::readRawDataIMUTask()	16	static
 ../Application/Src/IMUTask.cpp:6:6:void readRawDataIMUTask::init()	16	static
-../Application/Src/IMUTask.cpp:11:6:void readRawDataIMUTask::startTask()	16	static
-../Application/Src/IMUTask.cpp:20:6:void readRawDataIMUTask::processTask()	16	static
-../Application/Src/IMUTask.cpp:38:6:void readRawDataIMUTask::readData()	16	static
+../Application/Src/IMUTask.cpp:11:6:void readRawDataIMUTask::startTask()	24	static
+../Application/Src/IMUTask.cpp:22:6:void readRawDataIMUTask::processTask(QueueSetMemberHandle_t)	16	static
+../Application/Src/IMUTask.cpp:40:6:void readRawDataIMUTask::readData()	16	static

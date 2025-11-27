@@ -10,29 +10,31 @@ void readRawDataIMUTask :: init(void)
 
 void readRawDataIMUTask::startTask ()
 {
+	QueueSetMemberHandle_t activeMember;
 	for(;;)
 	{
-		processTask();
+		activeMember = xQueueSelectFromSet(IMUTaskQueueSet, 10);
+		processTask(activeMember);
 	}
 }
 
 
-void readRawDataIMUTask::processTask(void)
+void readRawDataIMUTask::processTask(QueueSetMemberHandle_t activeMember)
 {
-
-	xSemaphoreTake(semaIMUTask, portMAX_DELAY);
-	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-	readData();
-	if(xQueueSend(QueueIMUToLora, &_IMU_data, 100) == pdPASS)
+	if(activeMember == semaIMUTask)
 	{
+		xSemaphoreTake(semaIMUTask,10);
+		readData();
+		if(xQueueSend(QueueIMUToLora, &_IMU_data, 10) == pdPASS)
+		{
 
+		}
+
+		if(xQueueSend(QueueIMUToMicroSD, &_IMU_data, 10) == pdPASS)
+		{
+
+		}
 	}
-
-	if(xQueueSend(QueueIMUToMicroSD, &_IMU_data, 100) == pdPASS)
-	{
-
-	}
-
 }
 
 void readRawDataIMUTask::readData(void)

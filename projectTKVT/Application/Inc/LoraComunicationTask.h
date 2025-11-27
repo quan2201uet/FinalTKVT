@@ -22,9 +22,12 @@ public:
 
 	void startTask();
 
-	void processTask();
+	void processTask(QueueSetMemberHandle_t activeMember);
 
-	void giveData(void); // lấy dữ liệu từ các task khác
+	void getBMEDataFromQueue();
+	void getGPSDataFromQueue();
+	void getIMUDataFromQueue();
+	void getPM25DataFromQueue();
 
 
 private:

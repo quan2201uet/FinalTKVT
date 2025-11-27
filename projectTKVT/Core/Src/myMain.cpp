@@ -75,8 +75,8 @@ void controlSemaphore()
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	if (counterSemaphore % IMU_TASK_TIMER_COUNTER_MAX == IMU_TASK_TIMER_MOD)
 	{
-		//xSemaphoreGiveFromISR(semaIMUTask, &xHigherPriorityTaskWoken);
-		xSemaphoreGive(semaIMUTask);
+		xSemaphoreGiveFromISR(semaIMUTask, &xHigherPriorityTaskWoken);
+		//xSemaphoreGive(semaIMUTask);
 	}
 
 	// BME
@@ -109,6 +109,7 @@ void controlSemaphore()
 		xSemaphoreGiveFromISR(semaLoraComunicationTask, &xHigherPriorityTaskWoken);
 	}
 
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 	// reset counter
 	if (counterSemaphore == COUNTER_TIMER_MAX)
 	{
@@ -139,7 +140,7 @@ void startPM25Task()
 {
 	PM25Task->startTask();
 }
-void startMICRTask()
+void startMICROTask()
 {
 	MicroSDTask->startTask();
 }

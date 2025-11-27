@@ -37,7 +37,7 @@ public:
 
 	void readData(void);
 
-	void processTask(void);
+	void processTask(QueueSetMemberHandle_t activeMember);
 
 };
 

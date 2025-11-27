@@ -9,25 +9,29 @@ void GPSDataAnalysisTask::init(void)
 
 void GPSDataAnalysisTask::startTask()
 {
+	QueueSetMemberHandle_t activeMember;
 	for(;;)
 	{
-		processTask();
+		activeMember = xQueueSelectFromSet(GPSTaskQueueSet, 10);
+		processTask(activeMember);
 
 	}
 }
 
-void GPSDataAnalysisTask::processTask(void)
+void GPSDataAnalysisTask::processTask(QueueSetMemberHandle_t activeMember)
 {
-
-	xSemaphoreTake(semaGPSTask, portMAX_DELAY);
-	readData();
-	if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
+	if (activeMember == semaGPSTask)
 	{
+		xSemaphoreTake(semaGPSTask, 10);
+		readData();
+		if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
+		{
 
-	}
-	if (xQueueSend(QueueGPSToMicroSD, &_GPS_data, 100) == pdPASS)
-	{
+		}
+		if (xQueueSend(QueueGPSToMicroSD, &_GPS_data, 100) == pdPASS)
+		{
 
+		}
 	}
 
 }
