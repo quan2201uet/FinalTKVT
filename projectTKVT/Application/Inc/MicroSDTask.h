@@ -5,6 +5,9 @@
 #include "mavlink.h"
 #include "mavlink_types.h"
 #include "mavlink_msg_sensor_data.h"
+#include "ff.h"
+#include "diskio.h"
+#include "fatfs.h"
 
 class logDataTask
 {
@@ -25,6 +28,13 @@ private:
 	GPS_data_t _GPS_data;
 	BME_data_t _BME_data;
 	IMU_data_t _IMU_data;
+
+	FATFS fs;
+	FIL fil;
+	FRESULT fr;
+	UINT bw, br;
+	char buffer[64];
+
 	float pm;
 	int counter;
 };

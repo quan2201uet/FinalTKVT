@@ -7,6 +7,7 @@ void logDataTask::init()
 
 void logDataTask::startTask()
 {
+	fr = f_mount(&fs, "", 1);
 	for(;;)
 	{
 		processTask();
@@ -18,11 +19,20 @@ void logDataTask::processTask()
 	giveData();
 	if(counter == 1000)
 	{
-		// log data
-#pragma message ("chưa viết hàm log data")
+		if(fr == FR_OK){
+			fr = f_open(&fil, "log.txt", FA_CREATE_ALWAYS | FA_WRITE);
+			if(fr == FR_OK){
+				// ghi đầu mục cho dữ liệu
+
+				fr = f_write(&fil, &_Lora_data, sizeof(_Lora_data), &bw);
+				f_write(&fil, "\n", 1, &bw);
+
+				f_sync(&fil);
+				f_close(&fil);
+			}
+		}
 		counter = 0;
 	}
-
 }
 
 void logDataTask::giveData()

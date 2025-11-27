@@ -15,6 +15,12 @@ public:
 
 	void readData(void);
 	void processTask(void);
+
+	void setToOutput(void);
+	void setToInput(void);
+	uint8_t dht11ReadByte(void);
+	void dht11Start(void);
+	void delay_us( uint16_t time_us );
 };
 
 

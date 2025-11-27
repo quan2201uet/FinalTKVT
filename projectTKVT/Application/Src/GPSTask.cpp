@@ -20,7 +20,9 @@ void GPSDataAnalysisTask::startTask()
 void GPSDataAnalysisTask::processTask(void)
 {
 
-	readData();
+	//readData();
+
+
 	if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
 	{
 

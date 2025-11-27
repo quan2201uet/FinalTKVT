@@ -1,5 +1,5 @@
 ../Application/Src/BME280Task.cpp:4:1:readBME280Task::readBME280Task()	1
 ../Application/Src/BME280Task.cpp:6:6:void readBME280Task::init()	1
-../Application/Src/BME280Task.cpp:11:6:void readBME280Task::startTask()	1
-../Application/Src/BME280Task.cpp:21:6:void readBME280Task::processTask()	1
-../Application/Src/BME280Task.cpp:37:6:void readBME280Task::readData()	1
+../Application/Src/BME280Task.cpp:10:6:void readBME280Task::startTask()	1
+../Application/Src/BME280Task.cpp:20:6:void readBME280Task::processTask()	1
+../Application/Src/BME280Task.cpp:36:6:void readBME280Task::readData()	1

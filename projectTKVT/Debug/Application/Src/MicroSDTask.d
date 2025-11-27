@@ -54,7 +54,13 @@ Application/Src/MicroSDTask.o: ../Application/Src/MicroSDTask.cpp \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_conversions.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h \
- D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h \
+ ../Middlewares/Third_Party/FatFs/src/ff.h \
+ ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
+ ../Middlewares/Third_Party/FatFs/src/diskio.h ../FATFS/App/fatfs.h \
+ ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
+ ../Middlewares/Third_Party/FatFs/src/diskio.h \
+ ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/MicroSDTask.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
 ../Core/Inc/main.h:
@@ -112,3 +118,12 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_conv
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h:
+../Middlewares/Third_Party/FatFs/src/ff.h:
+../Middlewares/Third_Party/FatFs/src/integer.h:
+../FATFS/Target/ffconf.h:
+../Middlewares/Third_Party/FatFs/src/diskio.h:
+../FATFS/App/fatfs.h:
+../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
+../Middlewares/Third_Party/FatFs/src/diskio.h:
+../Middlewares/Third_Party/FatFs/src/ff.h:
+../FATFS/Target/user_diskio.h:
