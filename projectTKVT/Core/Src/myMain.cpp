@@ -72,39 +72,41 @@ void controlSemaphore()
 {
 	counterSemaphore++;
 	// IMU
+	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	if (counterSemaphore % IMU_TASK_TIMER_COUNTER_MAX == IMU_TASK_TIMER_MOD)
 	{
+		//xSemaphoreGiveFromISR(semaIMUTask, &xHigherPriorityTaskWoken);
 		xSemaphoreGive(semaIMUTask);
 	}
 
 	// BME
 	if(counterSemaphore % BME_TASK_TIMER_COUNTER_MAX == BME_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaBME280Task);
+		xSemaphoreGiveFromISR(semaBME280Task, &xHigherPriorityTaskWoken);
 	}
 
 	//GPS
 	if(counterSemaphore % GPS_TASK_TIMER_COUNTER_MAX == GPS_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaGPSTask);
+		xSemaphoreGiveFromISR(semaGPSTask, &xHigherPriorityTaskWoken);
 	}
 
 	//PM25
 	if(counterSemaphore % PM25_TASK_TIMER_COUNTER_MAX == PM25_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaPM25Task);
+		xSemaphoreGiveFromISR(semaPM25Task, &xHigherPriorityTaskWoken);
 	}
 
 	//MICRO SD
 	if(counterSemaphore % MICR_TASK_TIMER_COUNTER_MAX == MICR_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaMicroSDTask);
+		xSemaphoreGiveFromISR(semaMicroSDTask, &xHigherPriorityTaskWoken);
 	}
 
 	//Lora
 	if (counterSemaphore % LORA_TASK_TIMER_COUNTER_MAX == LORA_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaLoraComunicationTask);
+		xSemaphoreGiveFromISR(semaLoraComunicationTask, &xHigherPriorityTaskWoken);
 	}
 
 	// reset counter

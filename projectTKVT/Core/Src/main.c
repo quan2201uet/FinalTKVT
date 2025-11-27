@@ -48,7 +48,6 @@ TIM_HandleTypeDef htim3;
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
-osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -60,7 +59,7 @@ static void MX_I2C1_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_TIM3_Init(void);
-void StartDefaultTask(void const * argument);
+
 
 /* USER CODE BEGIN PFP */
 uint64_t count = 0;
@@ -127,7 +126,6 @@ int main(void)
 	/* Create the thread(s) */
 	/* definition and creation of defaultTask */
 
-
 	/* USER CODE BEGIN RTOS_THREADS */
 	if(xTaskCreate(startIMUTask, "IMU-Task", 128, NULL, 1, NULL) == pdPASS)
 	{
@@ -143,6 +141,9 @@ int main(void)
 	{
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	}
+	else {
+		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	}
 
 	if(xTaskCreate(startPM25Task, "PM25-Task", 128, NULL, 1, NULL) == pdPASS)
 	{
@@ -155,8 +156,9 @@ int main(void)
 	}
 	//xTaskCreate(startMICRTask, "Micro-Task", 512S, NULL, 1, NULL);
 	/* USER CODE END RTOS_THREADS */
+
 	/* Start scheduler */
-	vTaskStartScheduler();
+	osKernelStart();
 
 	/* We should never get here as control is now taken by the scheduler */
 
@@ -260,9 +262,9 @@ static void MX_TIM3_Init(void)
 
 	/* USER CODE END TIM3_Init 1 */
 	htim3.Instance = TIM3;
-	htim3.Init.Prescaler = 8000;
+	htim3.Init.Prescaler = 7;
 	htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim3.Init.Period = 500;
+	htim3.Init.Period = 1;
 	htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
 	if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
