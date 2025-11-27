@@ -15,11 +15,11 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_help
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_helpers.h:447:25:uint16_t mavlink_msg_to_send_buffer(uint8_t*, const mavlink_message_t*)	32	static
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h:119:24:uint16_t mavlink_msg_sensor_data_pack(uint8_t, uint8_t, mavlink_message_t*, uint32_t, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, uint32_t)	112	static
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h:352:24:uint16_t mavlink_msg_sensor_data_encode(uint8_t, uint8_t, mavlink_message_t*, const mavlink_sensor_data_t*)	160	static
-../Application/Src/LoraComunicationTask.cpp:3:1:LoraComunicationTask::LoraComunicationTask()	16	static
-../Application/Src/LoraComunicationTask.cpp:5:6:void LoraComunicationTask::init()	16	static
-../Application/Src/LoraComunicationTask.cpp:11:6:void LoraComunicationTask::startTask()	24	static
-../Application/Src/LoraComunicationTask.cpp:21:6:void LoraComunicationTask::processTask(QueueSetMemberHandle_t)	16	static
-../Application/Src/LoraComunicationTask.cpp:55:6:void LoraComunicationTask::getBMEDataFromQueue()	16	static
-../Application/Src/LoraComunicationTask.cpp:65:6:void LoraComunicationTask::getGPSDataFromQueue()	16	static
-../Application/Src/LoraComunicationTask.cpp:76:6:void LoraComunicationTask::getIMUDataFromQueue()	16	static
-../Application/Src/LoraComunicationTask.cpp:90:6:void LoraComunicationTask::getPM25DataFromQueue()	16	static
+../Application/Src/LoraComunicationTask.cpp:3:1:LoraComunicationTask::LoraComunicationTask(uartAbstract*)	16	static
+../Application/Src/LoraComunicationTask.cpp:8:6:void LoraComunicationTask::init()	16	static
+../Application/Src/LoraComunicationTask.cpp:14:6:void LoraComunicationTask::startTask()	24	static
+../Application/Src/LoraComunicationTask.cpp:24:6:void LoraComunicationTask::processTask(QueueSetMemberHandle_t)	32	static
+../Application/Src/LoraComunicationTask.cpp:58:6:void LoraComunicationTask::getBMEDataFromQueue()	16	static
+../Application/Src/LoraComunicationTask.cpp:68:6:void LoraComunicationTask::getGPSDataFromQueue()	16	static
+../Application/Src/LoraComunicationTask.cpp:79:6:void LoraComunicationTask::getIMUDataFromQueue()	16	static
+../Application/Src/LoraComunicationTask.cpp:93:6:void LoraComunicationTask::getPM25DataFromQueue()	16	static

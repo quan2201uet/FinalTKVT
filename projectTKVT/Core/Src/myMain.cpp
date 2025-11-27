@@ -8,6 +8,12 @@
 #include "PM25Task.h"
 #include "MicroSDTask.h"
 
+#include "uartSTM32.h"
+
+extern UART_HandleTypeDef huart1;
+
+uartSTM32* uart1Protocol;
+
 readRawDataIMUTask *IMUTask;
 readBME280Task *BMETask;
 GPSDataAnalysisTask *GPSTask;
@@ -54,12 +60,14 @@ void startLoraTask(void*parameter);
 
 void startAllTask()
 {
+	uart1Protocol = new uartSTM32(&huart1);
+
 	initTask();
 
 	IMUTask =  new readRawDataIMUTask();
 	BMETask = new readBME280Task();
 	GPSTask = new GPSDataAnalysisTask();
-	LoraTask = new LoraComunicationTask();
+	LoraTask = new LoraComunicationTask(uart1Protocol);
 	//MicroSDTask = new logDataTask();
 	PM25Task = new readPM25Task();
 }

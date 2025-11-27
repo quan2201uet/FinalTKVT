@@ -1,8 +1,8 @@
-../Core/Src/myMain.cpp:55:6:void startAllTask()	1
-../Core/Src/myMain.cpp:71:6:void controlSemaphore()	9
-../Core/Src/myMain.cpp:123:6:void startIMUTask()	1
-../Core/Src/myMain.cpp:127:6:void startBMETask()	1
-../Core/Src/myMain.cpp:131:6:void startGPSTask()	1
-../Core/Src/myMain.cpp:135:6:void startLoraTask()	1
-../Core/Src/myMain.cpp:139:6:void startPM25Task()	1
-../Core/Src/myMain.cpp:143:6:void startMICROTask()	1
+../Core/Src/myMain.cpp:61:6:void startAllTask()	1
+../Core/Src/myMain.cpp:79:6:void controlSemaphore()	9
+../Core/Src/myMain.cpp:131:6:void startIMUTask()	1
+../Core/Src/myMain.cpp:135:6:void startBMETask()	1
+../Core/Src/myMain.cpp:139:6:void startGPSTask()	1
+../Core/Src/myMain.cpp:143:6:void startLoraTask()	1
+../Core/Src/myMain.cpp:147:6:void startPM25Task()	1
+../Core/Src/myMain.cpp:151:6:void startMICROTask()	1

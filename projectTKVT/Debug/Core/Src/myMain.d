@@ -58,8 +58,10 @@ Core/Src/myMain.o: ../Core/Src/myMain.cpp ../Core/Inc/myMain.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/myDrivers/DriverAbstract/uartAbstract.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/PM25Task.h \
- D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/MicroSDTask.h
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/MicroSDTask.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/myDrivers/DriverSTM32/Inc/uartSTM32.h
 ../Core/Inc/myMain.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/IMUTask.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
@@ -121,5 +123,7 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_conv
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/myDrivers/DriverAbstract/uartAbstract.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/PM25Task.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/MicroSDTask.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/myDrivers/DriverSTM32/Inc/uartSTM32.h:

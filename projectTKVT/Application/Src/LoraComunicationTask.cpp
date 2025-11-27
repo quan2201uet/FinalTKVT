@@ -1,6 +1,9 @@
 #include <LoraComunicationTask.h>
 
-LoraComunicationTask::LoraComunicationTask(){}
+LoraComunicationTask::LoraComunicationTask(uartAbstract * newUartProtocol)
+{
+	uartProtocol = newUartProtocol;
+}
 
 void LoraComunicationTask::init(void)
 {
@@ -27,7 +30,7 @@ void LoraComunicationTask::processTask(QueueSetMemberHandle_t activeMember)
 			len_encoded = mavlink_msg_sensor_data_encode(SYSTEM_ID, COMPONENT_ID, &msg, &_Lora_data);
 			len_encoded = mavlink_msg_to_send_buffer(tx_mavlink_buffer, &msg);
 			if (len_encoded > 0) {
-				HAL_UART_Transmit(&huart1, tx_mavlink_buffer, len_encoded, 100);
+				uartProtocol->sendData(tx_mavlink_buffer, len_encoded);
 			}
 		}
 	}

@@ -5,6 +5,7 @@
 #include "mavlink.h"
 #include "mavlink_types.h"
 #include "mavlink_msg_sensor_data.h"
+#include "uartAbstract.h"
 
 /* BEGIN INCLUE DEFINE */
 #define SYSTEM_ID           20       // ID của thiết bị (STM32)
@@ -16,7 +17,8 @@ class LoraComunicationTask
 {
 
 public:
-	LoraComunicationTask();
+	LoraComunicationTask(uartAbstract * newUartProtocol);
+	~LoraComunicationTask();
 
 	void init(void);
 
@@ -31,6 +33,8 @@ public:
 
 
 private:
+	uartAbstract* uartProtocol {nullptr};
+
 	mavlink_message_t msg;
 	uint16_t len_encoded;
 	mavlink_sensor_data_t _Lora_data;
