@@ -23,6 +23,7 @@ void GPSDataAnalysisTask::processTask(QueueSetMemberHandle_t activeMember)
 	if (activeMember == semaGPSTask)
 	{
 		xSemaphoreTake(semaGPSTask, 10);
+
 		readData();
 		if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
 		{
@@ -37,6 +38,11 @@ void GPSDataAnalysisTask::processTask(QueueSetMemberHandle_t activeMember)
 }
 void GPSDataAnalysisTask::readData(void)
 {
+
+	uint8_t RxChar;
+	char RxBuffer[RX_BUFFER_SIZE];
+	uint16_t idx = 0;
+
 	HAL_UART_Receive(&huart2, &RxChar, 1, 10);
 
 	if(idx < RX_BUFFER_SIZE-1) RxBuffer[idx++] = RxChar;

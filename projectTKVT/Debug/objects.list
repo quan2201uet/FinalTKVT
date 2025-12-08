@@ -4,6 +4,7 @@
 "./Application/Src/LoraComunicationTask.o"
 "./Application/Src/MicroSDTask.o"
 "./Application/Src/PM25Task.o"
+"./Application/Src/bme280.o"
 "./Application/Src/common.o"
 "./Core/Src/freertos.o"
 "./Core/Src/main.o"

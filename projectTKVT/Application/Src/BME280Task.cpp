@@ -5,7 +5,16 @@ readBME280Task::readBME280Task(){}
 
 void readBME280Task::init(void)
 {
+	bmp280_init_default_params(&bmp280.params);
+	bmp280.addr = BMP280_I2C_ADDRESS_0;
+	bmp280.i2c = &hi2c1;
 
+	while (!bmp280_init(&bmp280, &bmp280.params)) {
+	//	size = sprintf((char *)Data, "BMP280 initialization failed\n");
+
+	}
+	bool bme280p = bmp280.id == BME280_CHIP_ID;
+	//size = sprintf((char *)Data, "BMP280: found %s\n", bme280p ? "BME280" : "BMP280");
 }
 
 void readBME280Task::startTask()
@@ -23,7 +32,7 @@ void readBME280Task::processTask(QueueSetMemberHandle_t activeMember)
 {
 	if(activeMember == semaBME280Task)
 	{
-		xSemaphoreTake(semaBME280Task, portMAX_DELAY);
+		xSemaphoreTake(semaBME280Task, 10);
 		readData();
 		if (xQueueSend(QueueBMEToLora, &_BME_data, 10) == pdPASS)
 		{
@@ -39,7 +48,7 @@ void readBME280Task::processTask(QueueSetMemberHandle_t activeMember)
 
 void readBME280Task::readData(void)
 {
-#pragma message ("chưa viết hàm đọc BME")
+	bmp280_read_float(&bmp280, &_BME_data.temp, &_BME_data.press, &_BME_data.humi);
 }
 
 

@@ -68,8 +68,11 @@ void startAllTask()
 	BMETask = new readBME280Task();
 	GPSTask = new GPSDataAnalysisTask();
 	LoraTask = new LoraComunicationTask(uart1Protocol);
-	//MicroSDTask = new logDataTask();
+	MicroSDTask = new logDataTask();
 	PM25Task = new readPM25Task();
+
+	BMETask->init();
+	IMUTask->init();
 }
 
 

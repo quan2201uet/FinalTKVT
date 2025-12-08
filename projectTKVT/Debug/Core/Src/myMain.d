@@ -45,6 +45,7 @@ Core/Src/myMain.o: ../Core/Src/myMain.cpp ../Core/Inc/myMain.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/BME280Task.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/bme280.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/GPSTask.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/LoraComunicationTask.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/mavlink.h \
@@ -110,6 +111,7 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/BME280Task.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/bme280.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/GPSTask.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/LoraComunicationTask.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/mavlink.h:

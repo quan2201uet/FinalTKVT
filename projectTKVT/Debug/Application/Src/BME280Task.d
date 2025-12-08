@@ -43,7 +43,8 @@ Application/Src/BME280Task.o: ../Application/Src/BME280Task.cpp \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/bme280.h
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/BME280Task.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
 ../Core/Inc/main.h:
@@ -90,3 +91,4 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/bme280.h:

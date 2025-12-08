@@ -19,31 +19,18 @@ class LoraComunicationTask
 public:
 	LoraComunicationTask(uartAbstract * newUartProtocol);
 	~LoraComunicationTask();
-
 	void init(void);
 
 	void startTask();
 
-	void processTask(QueueSetMemberHandle_t activeMember);
-
+private:
+	uartAbstract* uartProtocol {nullptr};
+	mavlink_sensor_data_t _Lora_data;
 	void getBMEDataFromQueue();
 	void getGPSDataFromQueue();
 	void getIMUDataFromQueue();
 	void getPM25DataFromQueue();
-
-
-private:
-	uartAbstract* uartProtocol {nullptr};
-
-	mavlink_message_t msg;
-	uint16_t len_encoded;
-	mavlink_sensor_data_t _Lora_data;
-	uint8_t tx_mavlink_buffer[MAVLINK_MAX_TX_BUFFER_LEN];
-
-	GPS_data_t _GPS_data;
-	BME_data_t _BME_data;
-	IMU_data_t _IMU_data;
-	float pm;
+	void processTask(QueueSetMemberHandle_t activeMember);
 
 };
 
