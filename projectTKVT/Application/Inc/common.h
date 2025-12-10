@@ -6,6 +6,16 @@
 #include "main.h"
 #include "cmsis_os.h"
 /* USER CODE END Includes */
+
+/* USING QUEUESET BEGIN*/
+extern QueueSetHandle_t BME280TaskQueueSet;
+extern QueueSetHandle_t GPSTaskQueueSet;
+extern QueueSetHandle_t IMUTaskQueueSet;
+extern QueueSetHandle_t LoraTaskQueueSet;
+extern QueueSetHandle_t MicroSDTaskQueueSet;
+extern QueueSetHandle_t PM25TaskQueueSet;
+/* USING QUEUESET END*/
+
 /* USER CODE BEGIN initial queue */
 extern QueueHandle_t QueueGPSToMicroSD;
 extern QueueHandle_t QueueGPSToLora;

@@ -2,23 +2,26 @@
 #define INC_IMUTASK_H_
 
 #include "common.h"
-
+#define ADD 0xD0
+#define RTD 57.2957
 extern I2C_HandleTypeDef hi2c2;
 
 
 class readRawDataIMUTask
 {
 private:
-	QueueHandle_t _QueueIMUToMicroSD;
-	QueueHandle_t _QueueIMUToLora;
 	IMU_data_t _IMU_data;
+	void readData(void);
+	void processTask(QueueSetMemberHandle_t activeMember);
+	void MPU6050ReadG(void);
+	void MPU6050ReadA();
+	void filter();
+
 public:
 	readRawDataIMUTask();
 
 	void init(void);
 	void startTask();
-	void readData(void);
-	void processTask(void);
 };
 
 

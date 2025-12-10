@@ -1,6 +1,9 @@
 #include <LoraComunicationTask.h>
 
-LoraComunicationTask::LoraComunicationTask(){}
+LoraComunicationTask::LoraComunicationTask(uartAbstract * newUartProtocol)
+{
+	uartProtocol = newUartProtocol;
+}
 
 void LoraComunicationTask::init(void)
 {
@@ -10,37 +13,69 @@ void LoraComunicationTask::init(void)
 
 void LoraComunicationTask::startTask()
 {
+	QueueSetMemberHandle_t activeMember;
 	for(;;)
 	{
-		processTask();
+		activeMember = xQueueSelectFromSet(LoraTaskQueueSet, 10);
+		processTask(activeMember);
 	}
 }
 
-void LoraComunicationTask::processTask()
+void LoraComunicationTask::processTask(QueueSetMemberHandle_t activeMember)
 {
-
-	giveData(); // lấy dữ liệu từ các task khác
-
-	if(xSemaphoreTake(semaLoraComunicationTask, 10) == pdPASS) // gửi bản tin với tần số 1HZ
+	if(activeMember == semaLoraComunicationTask)
 	{
-		len_encoded = mavlink_msg_sensor_data_encode(SYSTEM_ID, COMPONENT_ID, &msg, &_Lora_data);
-		len_encoded = mavlink_msg_to_send_buffer(tx_mavlink_buffer, &msg);
-		if (len_encoded > 0) {
+		xSemaphoreTake(semaLoraComunicationTask, 10); // gửi bản tin với tần số 1HZ
+		uint16_t len_encoded;
+		mavlink_message_t msg;
+		uint8_t tx_mavlink_buffer[MAVLINK_MAX_TX_BUFFER_LEN];
+
+
+//		len_encoded = mavlink_msg_sensor_data_encode(SYSTEM_ID, COMPONENT_ID, &msg, &_Lora_data);
+//
+//		len_encoded = mavlink_msg_to_send_buffer(tx_mavlink_buffer, &msg);
+
+		if (len_encoded > 0)
+		{
+			//uartProtocol->sendData(tx_mavlink_buffer, len_encoded);
 			HAL_UART_Transmit(&huart1, tx_mavlink_buffer, len_encoded, 100);
 		}
 	}
+	else if(activeMember == QueueBMEToLora)
+	{
+		getBMEDataFromQueue();
+	}
+	else if (activeMember == QueueGPSToLora)
+	{
+		getGPSDataFromQueue();
+	}
+	else if (activeMember == QueueIMUToLora)
+	{
+		getIMUDataFromQueue();
+	}
+	else if (activeMember == QueuePM25ToLora)
+	{
+		getPM25DataFromQueue();
+	}
+
 }
 
 
-void LoraComunicationTask::giveData(void)
+/* USER FUNCTION CODE BEGIN */
+void LoraComunicationTask::getBMEDataFromQueue()
 {
+	BME_data_t _BME_data;
 	if(xQueueReceive(QueueBMEToLora, &_BME_data, 10) == pdPASS)
 	{
 		_Lora_data.temperature  = _BME_data.temp;
 		_Lora_data.humidity     = _BME_data.humi;
 		_Lora_data.pressure     = _BME_data.press;
 	}
+}
 
+void LoraComunicationTask::getGPSDataFromQueue()
+{
+	GPS_data_t _GPS_data;
 	if(xQueueReceive(QueueGPSToLora, &_GPS_data, 10) == pdPASS)
 	{
 		_Lora_data.utc_time  = _GPS_data.timeUTC;
@@ -49,7 +84,10 @@ void LoraComunicationTask::giveData(void)
 		_Lora_data.speed     = _GPS_data.speed;
 		_Lora_data.course    = _GPS_data.course;
 	}
-
+}
+void LoraComunicationTask::getIMUDataFromQueue()
+{
+	IMU_data_t _IMU_data;
 	if(xQueueReceive(QueueIMUToLora, &_IMU_data, 10) == pdPASS)
 	{
 		_Lora_data.acc_x  = _IMU_data.ax;
@@ -60,13 +98,17 @@ void LoraComunicationTask::giveData(void)
 		_Lora_data.gyro_y = _IMU_data.gy;
 		_Lora_data.gyro_z = _IMU_data.gz;
 	}
+}
 
+void LoraComunicationTask::getPM25DataFromQueue()
+{
+	float pm;
 	if(xQueueReceive(QueuePM25ToLora, &pm, 10) == pdPASS)
 	{
 		_Lora_data.pm_diameter = pm;
 	}
 }
-
+/* USER FUNCTION CODE END */
 
 
 
