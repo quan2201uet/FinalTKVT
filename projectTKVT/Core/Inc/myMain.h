@@ -17,7 +17,7 @@ void startIMUTask();
 void startBMETask();
 void startGPSTask();
 void startPM25Task();
-void startMICRTask();
+void startMICROTask();
 void startLoraTask();
 
 void startAllTask();

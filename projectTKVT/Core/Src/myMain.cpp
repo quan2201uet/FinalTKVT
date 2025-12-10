@@ -8,6 +8,12 @@
 #include "PM25Task.h"
 #include "MicroSDTask.h"
 
+#include "uartSTM32.h"
+
+extern UART_HandleTypeDef huart1;
+
+uartSTM32* uart1Protocol;
+
 readRawDataIMUTask *IMUTask;
 readBME280Task *BMETask;
 GPSDataAnalysisTask *GPSTask;
@@ -54,14 +60,19 @@ void startLoraTask(void*parameter);
 
 void startAllTask()
 {
+	uart1Protocol = new uartSTM32(&huart1);
+
 	initTask();
 
 	IMUTask =  new readRawDataIMUTask();
 	BMETask = new readBME280Task();
 	GPSTask = new GPSDataAnalysisTask();
-	LoraTask = new LoraComunicationTask();
-	//MicroSDTask = new logDataTask();
+	LoraTask = new LoraComunicationTask(uart1Protocol);
+	MicroSDTask = new logDataTask();
 	PM25Task = new readPM25Task();
+
+//	BMETask->init();
+	//IMUTask->init();
 }
 
 
@@ -72,41 +83,44 @@ void controlSemaphore()
 {
 	counterSemaphore++;
 	// IMU
+	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	if (counterSemaphore % IMU_TASK_TIMER_COUNTER_MAX == IMU_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaIMUTask);
+		xSemaphoreGiveFromISR(semaIMUTask, &xHigherPriorityTaskWoken);
+		//xSemaphoreGive(semaIMUTask);
 	}
 
 	// BME
 	if(counterSemaphore % BME_TASK_TIMER_COUNTER_MAX == BME_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaBME280Task);
+		xSemaphoreGiveFromISR(semaBME280Task, &xHigherPriorityTaskWoken);
 	}
 
 	//GPS
 	if(counterSemaphore % GPS_TASK_TIMER_COUNTER_MAX == GPS_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaGPSTask);
+		xSemaphoreGiveFromISR(semaGPSTask, &xHigherPriorityTaskWoken);
 	}
 
 	//PM25
 	if(counterSemaphore % PM25_TASK_TIMER_COUNTER_MAX == PM25_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaPM25Task);
+		xSemaphoreGiveFromISR(semaPM25Task, &xHigherPriorityTaskWoken);
 	}
 
 	//MICRO SD
 	if(counterSemaphore % MICR_TASK_TIMER_COUNTER_MAX == MICR_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaMicroSDTask);
+		xSemaphoreGiveFromISR(semaMicroSDTask, &xHigherPriorityTaskWoken);
 	}
 
 	//Lora
 	if (counterSemaphore % LORA_TASK_TIMER_COUNTER_MAX == LORA_TASK_TIMER_MOD)
 	{
-		xSemaphoreGive(semaLoraComunicationTask);
+		xSemaphoreGiveFromISR(semaLoraComunicationTask, &xHigherPriorityTaskWoken);
 	}
 
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 	// reset counter
 	if (counterSemaphore == COUNTER_TIMER_MAX)
 	{
@@ -137,7 +151,7 @@ void startPM25Task()
 {
 	PM25Task->startTask();
 }
-void startMICRTask()
+void startMICROTask()
 {
 	MicroSDTask->startTask();
 }

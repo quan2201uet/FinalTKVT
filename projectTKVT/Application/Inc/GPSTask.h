@@ -18,12 +18,11 @@ extern UART_HandleTypeDef huart2;
 class GPSDataAnalysisTask
 {
 private:
+	float convertToDecimal(char *nmeaCoord);
+	void parseGNRMC(char *nmea, GPS_data_t *gps);
+	void readData(void);
+	void processTask(QueueSetMemberHandle_t activeMember);
 	GPS_data_t _GPS_data;
-
-	uint8_t RxChar;
-	char RxBuffer[RX_BUFFER_SIZE];
-	uint16_t idx = 0;
-
 public:
 	GPSDataAnalysisTask ();
 
@@ -31,13 +30,7 @@ public:
 
 	void startTask ();
 
-	float convertToDecimal(char *nmeaCoord);
 
-	void parseGNRMC(char *nmea, GPS_data_t *gps);
-
-	void readData(void);
-
-	void processTask(void);
 
 };
 

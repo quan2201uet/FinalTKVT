@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .metadata/
+=======
+.metadata
+>>>>>>> 2d69c335c9a47f1e1410c81b79b102244b3e3429
 projectTKVT/.settings
 projectTKVT/Debug
 .gitignore

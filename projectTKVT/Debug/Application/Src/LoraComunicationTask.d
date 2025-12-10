@@ -55,7 +55,8 @@ Application/Src/LoraComunicationTask.o: \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_conversions.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h \
  D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h \
- D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h \
+ D:/ProjectTKVT/FinalTKVT/projectTKVT/myDrivers/DriverAbstract/uartAbstract.h
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/LoraComunicationTask.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/common.h:
 ../Core/Inc/main.h:
@@ -113,3 +114,4 @@ D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_conv
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_sha256.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/./mavlink_msg_sensor_data.h:
 D:/ProjectTKVT/FinalTKVT/projectTKVT/Application/Inc/Libs/sensor/../mavlink_get_info.h:
+D:/ProjectTKVT/FinalTKVT/projectTKVT/myDrivers/DriverAbstract/uartAbstract.h:

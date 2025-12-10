@@ -9,30 +9,40 @@ void GPSDataAnalysisTask::init(void)
 
 void GPSDataAnalysisTask::startTask()
 {
+	QueueSetMemberHandle_t activeMember;
 	for(;;)
 	{
-		processTask();
+		activeMember = xQueueSelectFromSet(GPSTaskQueueSet, 10);
+		processTask(activeMember);
 
 	}
 }
 
-void GPSDataAnalysisTask::processTask(void)
+void GPSDataAnalysisTask::processTask(QueueSetMemberHandle_t activeMember)
 {
-
-	xSemaphoreTake(semaGPSTask, portMAX_DELAY);
-	readData();
-	if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
+	if (activeMember == semaGPSTask)
 	{
+		xSemaphoreTake(semaGPSTask, 10);
 
-	}
-	if (xQueueSend(QueueGPSToMicroSD, &_GPS_data, 100) == pdPASS)
-	{
+		readData();
+		if (xQueueSend(QueueGPSToLora, &_GPS_data, 100) == pdPASS)
+		{
 
+		}
+		if (xQueueSend(QueueGPSToMicroSD, &_GPS_data, 100) == pdPASS)
+		{
+
+		}
 	}
 
 }
 void GPSDataAnalysisTask::readData(void)
 {
+
+	uint8_t RxChar;
+	char RxBuffer[RX_BUFFER_SIZE];
+	uint16_t idx = 0;
+
 	HAL_UART_Receive(&huart2, &RxChar, 1, 10);
 
 	if(idx < RX_BUFFER_SIZE-1) RxBuffer[idx++] = RxChar;
