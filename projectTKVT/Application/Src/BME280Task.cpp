@@ -11,7 +11,7 @@ void readBME280Task::init(void)
 
 	while (!bmp280_init(&bmp280, &bmp280.params)) {
 	//	size = sprintf((char *)Data, "BMP280 initialization failed\n");
-
+HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	}
 	bool bme280p = bmp280.id == BME280_CHIP_ID;
 	//size = sprintf((char *)Data, "BMP280: found %s\n", bme280p ? "BME280" : "BMP280");

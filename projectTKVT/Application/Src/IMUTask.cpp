@@ -18,6 +18,8 @@ void readRawDataIMUTask :: init(void)
 		mData = 0x00;
 		HAL_I2C_Mem_Write(&hi2c2, ADD,0x1C,1,&mData,1,1000);
 	}
+
+
 }
 
 void readRawDataIMUTask::startTask ()
@@ -84,13 +86,13 @@ void readRawDataIMUTask::MPU6050ReadA()
 
 void readRawDataIMUTask::filter()
 {
-//	float pitchG = pitch + GX*(10000/1000000.0f);
-//	float rollG = roll + GY*(10000/1000000.0f);
-//
-//	float pitchA = atan2(AY, sqrt(AX*AX + AZ * AZ))*RTD;
-//	float rollA = atan2(AX, sqrt(AY*AY + AZ*AZ))*RTD;
-//
-//	pitch = 0.98*pitchG + 0.02*pitchA;
-//	roll = 0.98*rollG + 0.02*rollA;
+	//	float pitchG = pitch + GX*(10000/1000000.0f);
+	//	float rollG = roll + GY*(10000/1000000.0f);
+	//
+	//	float pitchA = atan2(AY, sqrt(AX*AX + AZ * AZ))*RTD;
+	//	float rollA = atan2(AX, sqrt(AY*AY + AZ*AZ))*RTD;
+	//
+	//	pitch = 0.98*pitchG + 0.02*pitchA;
+	//	roll = 0.98*rollG + 0.02*rollA;
 }
 

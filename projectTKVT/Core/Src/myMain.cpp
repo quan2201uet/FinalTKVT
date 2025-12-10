@@ -71,8 +71,8 @@ void startAllTask()
 	MicroSDTask = new logDataTask();
 	PM25Task = new readPM25Task();
 
-	BMETask->init();
-	IMUTask->init();
+//	BMETask->init();
+	//IMUTask->init();
 }
 
 
